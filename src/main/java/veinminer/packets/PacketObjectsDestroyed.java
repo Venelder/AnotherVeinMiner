@@ -29,6 +29,8 @@ import veinminer.AnotherVeinMiner;
 import veinminer.objects.Coordinate;
 import veinminer.utils.CoordinateParser;
 
+import static veinminer.utils.ModMisc.getModVersion;
+
 public class PacketObjectsDestroyed extends Packet {
     public final ArrayList<Coordinate> tiles;
 
@@ -71,6 +73,8 @@ public class PacketObjectsDestroyed extends Packet {
 
                 while(var8.hasNext()) {
                     InventoryItem item = (InventoryItem)var8.next();
+                    //item.setAmount(item.getAmount() * 8);
+                    //System.out.println("Item new: " + item);
                     ItemPickupEntity droppedItem = item.getPickupEntity(level, (float)dropsEvent.dropPos.x, (float)dropsEvent.dropPos.y);
                     level.entityManager.pickups.add(droppedItem);
                     itemsDropped.add(droppedItem);

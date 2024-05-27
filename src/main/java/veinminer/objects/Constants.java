@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public final class Constants {
     public static final double MAJOR_VERSION = 1;
-    public static final double MINOR_VERSION = .20;
+    public static final double MINOR_VERSION = .24;
     public static final String MOD_VERSION = Double.toString(MAJOR_VERSION + MINOR_VERSION);
     public static final String CONFIG_DIRECTORY_NAME = GlobalData.appDataPath() + "\\AnotherVeinMiner";
     public static final String CONFIG_FILE_NAME = "config.json";
@@ -16,11 +16,12 @@ public final class Constants {
             "ironorerock", "copperorerock", "goldorerock", "tungstenorerock", "lifequartzrock",
             "ironoresnow", "copperoresnow", "goldoresnow", "frostshardsnow",
             "ironoresandstone", "copperoresandstone", "goldoresandstone", "quartzsandstone",
-            "ironoreswamp", "copperoreswamp", "goldoreswamp", "ivyoreswamp",
+            "ironoreswamp", "copperoreswamp", "goldoreswamp", "ivyoreswamp", "myceliumoredeepswamp",
             "ironoredeeprock", "copperoredeeprock","goldoredeeprock", "tungstenoredeeprock", "lifequartzdeeprock",
             "ironoredeepsnowrock", "copperoredeepsnowrock", "goldoredeepsnowrock", "tungstenoredeepsnowrock", "lifequartzdeepsnowrock", "glacialoredeepsnowrock",
             "ironoredeepsandstonerock", "copperoredeepsandstonerock", "goldoredeepsandstonerock", "ancientfossiloredeepsnowrock", "lifequartzdeepsandstonerock",
-            "clayrock"
+            "clayrock", "obsidianrock", "coalorerock", "coaloredeeprock", "coaloresnow", "coaloreswamp", "coaloresandstone", "coaloredeepsnowrock",
+            "coaloredeepsandstone"
     ));
     public static final String RADIUS_KEY = "radius";
     public static final String ORES_KEY = "ores";
