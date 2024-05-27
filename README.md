@@ -25,6 +25,7 @@ Default Config
         "copperoreswamp",
         "goldoreswamp",
         "ivyoreswamp",
+        "myceliumoredeppswamp",
         "ironoredeeprock",
         "copperoredeeprock",
         "goldoredeeprock",
@@ -41,7 +42,15 @@ Default Config
         "goldoredeepsandstonerock",
         "ancientfossiloredeepsnowrock",
         "lifequartzdeepsandstonerock",
-        "clayrock"
+        "clayrock",
+        "obsidianrock",
+        "coalorerock",
+        "coaloredeeprock",
+        "coreoresnow",
+        "coaloreswamp",
+        "coaloresandstone",
+        "coaloredeepsnowrock",
+        "coaloredeepsandstone"
     ],
     "radius": 10
 }
