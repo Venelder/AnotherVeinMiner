@@ -7,8 +7,8 @@ plugins {
 
 project.ext.modID = "trihardest.anotherveinminerfixed" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "AnotherVeinMiner - Fixed" // The display name of your mod.
-project.ext.modVersion = "1.26" // Your current builds version. Must follow the xx.xx... format.
-project.ext.gameVersion = "0.24.2" // The target game version.
+project.ext.modVersion = "1.27" // Your current builds version. Must follow the xx.xx... format.
+project.ext.gameVersion = "0.25.0" // The target game version.
 project.ext.modDescription = "a quality of life mining mod, fixed for newer versions" // Short description of what your mod is.
 project.ext.author = "Trihardest" // Your name
 
