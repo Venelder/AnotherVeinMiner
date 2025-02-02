@@ -19,10 +19,14 @@ import necesse.engine.network.server.Server;
 import necesse.engine.network.server.ServerClient;
 import necesse.engine.registries.LevelLayerRegistry;
 import necesse.engine.util.LevelIdentifier;
+import necesse.entity.levelEvent.ExtractionIncursionEvent;
 import necesse.entity.objectEntity.ObjectEntity;
 import necesse.entity.pickup.ItemPickupEntity;
 import necesse.inventory.InventoryItem;
 import necesse.level.gameObject.GameObject;
+import necesse.level.maps.IncursionLevel;
+import necesse.entity.levelEvent.IncursionLevelEvent;
+import necesse.entity.levelEvent.ExtractionIncursionEvent;
 import necesse.level.maps.Level;
 import necesse.level.maps.LevelObject;
 import necesse.level.maps.layers.LevelLayer;
@@ -101,6 +105,19 @@ public class PacketObjectsDestroyed extends Packet {
             objectEntity.remove();
         }
 
+        if (level instanceof IncursionLevel) {
+            IncursionLevel incursionLevel = (IncursionLevel) level;
+            IncursionLevelEvent levelEvent = incursionLevel.getIncursionLevelEvent();
+
+            if (levelEvent instanceof ExtractionIncursionEvent) {
+                ExtractionIncursionEvent event = (ExtractionIncursionEvent) levelEvent;
+                if (gameObject.isIncursionExtractionObject && !level.objectLayer.isPlayerPlaced(x, y)) {
+                    event.lastObjectDestroyedTime = event.getTime();
+                    event.remainingObjects--;
+                    event.isDirty = true;
+                }
+            }
+        }
     }
 
 
