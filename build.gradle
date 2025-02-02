@@ -7,9 +7,10 @@ plugins {
 
 project.ext.modID = "trihardest.anotherveinminerfixed" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "AnotherVeinMiner - Fixed" // The display name of your mod.
-project.ext.modVersion = "1.27" // Your current builds version. Must follow the xx.xx... format.
-project.ext.gameVersion = "0.25.0" // The target game version.
+project.ext.modVersion = "1.45" // Your current builds version. Must follow the xx.xx... format.
+project.ext.gameVersion = "0.30.0" // The target game version.
 project.ext.modDescription = "a quality of life mining mod, fixed for newer versions" // Short description of what your mod is.
+//project.ext.author = "Venelder" // Your name
 project.ext.author = "Trihardest" // Your name
 
 def useDecompiledSources = false
@@ -56,7 +57,10 @@ sourceSets.main.output.resourcesDir = file("build/mod/resources/")
 sourceSets.main.java.outputDir = file("build/mod/")
 def buildLocation = "build/jar"
 
-compileJava.options.encoding = "UTF-8"
+compileJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
+}
 
 if (!file(gameDirectory + "/Necesse.jar").exists()) {
     throw new Exception("Could not find game install directory. Make sure it is correct in build.gradle file.")
@@ -152,7 +156,7 @@ task runClient(type: JavaExec) {
 
     classpath = files(gameDirectory + "/Necesse.jar")
 
-    main = "StartClient"
+    main = "StartSteamClient"
     jvmArgs "-Xms512m", "-Xmx3G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"
     args "-mod \"${buildLocation}\""
 }
@@ -164,7 +168,7 @@ task runDevClient(type: JavaExec) {
 
     classpath = files(gameDirectory + "/Necesse.jar")
 
-    main = "StartClient"
+    main = "StartSteamClient"
     jvmArgs "-Xms512m", "-Xmx3G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"
     args "-dev 1", "-mod \"${buildLocation}\""
 }

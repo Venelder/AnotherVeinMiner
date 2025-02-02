@@ -85,7 +85,7 @@ public class BFS {
                 currentCord.setVisited(true);
                 try {
                     GameObject currentGameObject = level.getObject(currentCord.getX(), currentCord.getY());
-                    if(currentGameObject.getStringID().equals(matchID)) {
+                    if (currentGameObject.getStringID().equals(matchID)) {
                         relatedObjs.add(currentCord);
                         currentCord.setGameObject(currentGameObject);
                         currentCord.setID(currentGameObject.getID());

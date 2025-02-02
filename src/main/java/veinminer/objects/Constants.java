@@ -20,8 +20,10 @@ public final class Constants {
             "ironoredeeprock", "copperoredeeprock","goldoredeeprock", "tungstenoredeeprock", "lifequartzdeeprock",
             "ironoredeepsnowrock", "copperoredeepsnowrock", "goldoredeepsnowrock", "tungstenoredeepsnowrock", "lifequartzdeepsnowrock", "glacialoredeepsnowrock",
             "ironoredeepsandstonerock", "copperoredeepsandstonerock", "goldoredeepsandstonerock", "ancientfossiloredeepsnowrock", "lifequartzdeepsandstonerock",
-            "clayrock", "obsidianrock", "coalorerock", "coaloredeeprock", "coaloresnow", "coaloreswamp", "coaloresandstone", "coaloredeepsnowrock",
-            "coaloredeepsandstone"
+            "ironoredeepswamprock", "copperoredeepswamprock", "goldoredeepswamprock", "tungstenoredeepswamprock", "myceliumoredeepswamprock", "ancientfossiloredeepswamprock",
+            "clayrock", "obsidianrock", "coalorerock", "coaloredeeprock", "coaloresnow", "coaloreswamp", "coaloresandstone", "coaloredeepsnowrock", "coaloredeepsandstone",
+            "alchemysharddeepsandstonerock", "alchemysharddeepsnowrock", "alchemysharddeepswamprock",
+            "upgradesharddeepsandstonerock", "upgradesharddeepsnowrock", "upgradesharddeepswamprock"
     ));
     public static final String RADIUS_KEY = "radius";
     public static final String ORES_KEY = "ores";

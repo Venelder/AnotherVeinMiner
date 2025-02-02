@@ -1,5 +1,5 @@
 package veinminer;
-import necesse.engine.control.Control;
+import necesse.engine.input.Control;
 import necesse.engine.localization.message.LocalMessage;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.PacketRegistry;

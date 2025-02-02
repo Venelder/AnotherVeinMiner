@@ -4,6 +4,7 @@ import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.engine.network.server.ServerClient;
 import necesse.level.gameObject.GameObject;
 import necesse.level.maps.Level;
+import necesse.entity.mobs.Attacker;
 import net.bytebuddy.asm.Advice;
 import veinminer.AnotherVeinMiner;
 import veinminer.packets.PacketObjectsDestroyed;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import static veinminer.utils.ModMisc.getModVersion;
 
 
-@ModMethodPatch(target = GameObject.class, name = "onDestroyed", arguments = {Level.class, int.class, int.class, ServerClient.class, ArrayList.class})
+@ModMethodPatch(target = GameObject.class, name = "onDestroyed", arguments = {Level.class, int.class, int.class, int.class, Attacker.class, ServerClient.class, ArrayList.class})
 public class GameObjectDestroyedPatch {
 
     public static ArrayList<Coordinate> getNeighboringOres(Level level, String objectID, int originX, int originY) {
@@ -32,8 +33,8 @@ public class GameObjectDestroyedPatch {
     }
 
     @Advice.OnMethodExit
-    static void onExit(@Advice.This GameObject gameObject, @Advice.Argument(0) Level level, @Advice.Argument(1) int x, @Advice.Argument(2) int y, @Advice.Argument(3) ServerClient client) {
-        if(level.isClientLevel()) {
+    static void onExit(@Advice.This GameObject gameObject, @Advice.Argument(0) Level level, @Advice.Argument(1) int layerID, @Advice.Argument(2) int x, @Advice.Argument(3) int y, @Advice.Argument(4) Attacker attacker, @Advice.Argument(5) ServerClient client) {
+        if(level.isClient()) {
             if(AnotherVeinMiner.SPEED_MINE.getKey() == -1){
                 keySpeedMine(gameObject, level, x, y);
             } else if(AnotherVeinMiner.SPEED_MINE.isDown()){

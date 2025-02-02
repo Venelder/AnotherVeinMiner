@@ -17,12 +17,16 @@ import necesse.engine.network.client.Client;
 import necesse.engine.network.packet.PacketRequestObjectChange;
 import necesse.engine.network.server.Server;
 import necesse.engine.network.server.ServerClient;
+import necesse.engine.registries.LevelLayerRegistry;
+import necesse.engine.util.LevelIdentifier;
 import necesse.entity.objectEntity.ObjectEntity;
 import necesse.entity.pickup.ItemPickupEntity;
 import necesse.inventory.InventoryItem;
 import necesse.level.gameObject.GameObject;
 import necesse.level.maps.Level;
 import necesse.level.maps.LevelObject;
+import necesse.level.maps.layers.LevelLayer;
+import necesse.level.maps.layers.ObjectLevelLayer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import veinminer.AnotherVeinMiner;
@@ -49,6 +53,7 @@ public class PacketObjectsDestroyed extends Packet {
         this.tiles = tiles;
     }
 
+    @SuppressWarnings("unchecked")
     public PacketObjectsDestroyed(ArrayList<Coordinate> all_tiles) {
         this.tiles = all_tiles;
         PacketWriter writer = new PacketWriter(this);
@@ -65,9 +70,9 @@ public class PacketObjectsDestroyed extends Packet {
     //copied from GameObject.java, avoid invocation of patched method
     public void onDestroyed(GameObject gameObject, Level level, int x, int y, ServerClient client, ArrayList<ItemPickupEntity> itemsDropped) {
         if (itemsDropped != null) {
-            ArrayList<InventoryItem> drops = gameObject.getDroppedItems(level, x, y);
+            ArrayList<InventoryItem> drops = gameObject.getDroppedItems(level, LevelLayerRegistry.getLayerID(ObjectLevelLayer.class), x, y);
             ObjectLootTableDropsEvent dropsEvent;
-            GameEvents.triggerEvent(dropsEvent = new ObjectLootTableDropsEvent(new LevelObject(level, x, y), new Point(x * 32 + 16, y * 32 + 16), drops));
+            GameEvents.triggerEvent(dropsEvent = new ObjectLootTableDropsEvent(level, LevelLayerRegistry.getLayerID(ObjectLevelLayer.class), x, y, new Point(x * 32 + 16, y * 32 + 16), drops));
             if (dropsEvent.dropPos != null && dropsEvent.drops != null) {
                 Iterator var8 = dropsEvent.drops.iterator();
 
@@ -86,7 +91,7 @@ public class PacketObjectsDestroyed extends Packet {
             client.newStats.objects_mined.increment(1);
         }
 
-        if (!level.isServerLevel()) {
+        if (!level.isServer()) {
             gameObject.spawnDestroyedParticles(level, x, y);
         }
 
@@ -117,7 +122,12 @@ public class PacketObjectsDestroyed extends Packet {
             }
         }
         if(destroyOnClient.size() > 0) {
-            server.network.sendToClientsAt(new PacketObjectsDestroyed(destroyOnClient), serverClient.getLevel());
+            Level level = serverClient.getLevel();
+            if (level != null) {
+                LevelIdentifier levelIdentifier = level.getIdentifier();
+                server.network.sendPacket(new PacketObjectsDestroyed(destroyOnClient), (c) -> c.isSamePlace(levelIdentifier));
+            }
+            //server.network.sendToClientsAt(new PacketObjectsDestroyed(destroyOnClient), serverClient.getLevel());
         }
     }
 

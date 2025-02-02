@@ -63,6 +63,7 @@ public class ConfigParser {
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     public void createConfigFile() throws IOException {
         JSONObject jsonObject = new JSONObject();
 

@@ -20,6 +20,7 @@ public class Coordinate {
         this.neighbors = new LinkedList<>();
     }
 
+    @SuppressWarnings("unchecked")
     public String getJSON() {
         JSONObject coordJSON = new JSONObject();
         coordJSON.put("x", this.getX());
