@@ -30,7 +30,7 @@ import necesse.entity.levelEvent.ExtractionIncursionEvent;
 import necesse.level.maps.Level;
 import necesse.level.maps.LevelObject;
 import necesse.level.maps.layers.LevelLayer;
-import necesse.level.maps.layers.ObjectLevelLayer;
+//import necesse.level.maps.layers.ObjectLevelLayer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import veinminer.AnotherVeinMiner;
@@ -74,11 +74,12 @@ public class PacketObjectsDestroyed extends Packet {
     //copied from GameObject.java, avoid invocation of patched method
     public void onDestroyed(GameObject gameObject, Level level, int x, int y, ServerClient client, ArrayList<ItemPickupEntity> itemsDropped) {
         if (itemsDropped != null) {
-            ArrayList<InventoryItem> drops = gameObject.getDroppedItems(level, LevelLayerRegistry.getLayerID(ObjectLevelLayer.class), x, y);
+            ArrayList<InventoryItem> drops = gameObject.getObjectDroppedItems(level, LevelLayerRegistry.getLayerID(LevelLayer.class), x, y, "onDestroyed");
+            ArrayList<InventoryItem> entityDrops = gameObject.getObjectDroppedItems(level, LevelLayerRegistry.getLayerID(LevelLayer.class), x, y, "onDestroyed");
             ObjectLootTableDropsEvent dropsEvent;
-            GameEvents.triggerEvent(dropsEvent = new ObjectLootTableDropsEvent(level, LevelLayerRegistry.getLayerID(ObjectLevelLayer.class), x, y, new Point(x * 32 + 16, y * 32 + 16), drops));
-            if (dropsEvent.dropPos != null && dropsEvent.drops != null) {
-                Iterator var8 = dropsEvent.drops.iterator();
+            GameEvents.triggerEvent(dropsEvent = new ObjectLootTableDropsEvent(gameObject, level, LevelLayerRegistry.getLayerID(LevelLayer.class), x, y, new Point(x * 32 + 16, y * 32 + 16), drops, entityDrops));
+            if (dropsEvent.dropPos != null && dropsEvent.entityDrops != null) {
+                Iterator var8 = dropsEvent.entityDrops.iterator();
 
                 while(var8.hasNext()) {
                     InventoryItem item = (InventoryItem)var8.next();
@@ -92,6 +93,7 @@ public class PacketObjectsDestroyed extends Packet {
         }
 
         if (client != null) {
+            //System.out.println("Stats object: " + client.newStats.getClass().getName());
             client.newStats.objects_mined.increment(1);
         }
 

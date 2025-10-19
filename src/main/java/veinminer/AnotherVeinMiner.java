@@ -1,6 +1,6 @@
 package veinminer;
 import necesse.engine.input.Control;
-import necesse.engine.localization.message.LocalMessage;
+//import necesse.engine.localization.message.LocalMessage;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.PacketRegistry;
 import veinminer.objects.Config;
@@ -9,9 +9,9 @@ import veinminer.utils.ConfigParser;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
+//import java.lang.reflect.Array;
+//import java.lang.reflect.Constructor;
+//import java.lang.reflect.Method;
 import java.util.HashSet;
 
 import static veinminer.utils.ModMisc.getModVersion;

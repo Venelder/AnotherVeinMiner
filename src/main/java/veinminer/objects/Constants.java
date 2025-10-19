@@ -17,13 +17,16 @@ public final class Constants {
             "ironoresnow", "copperoresnow", "goldoresnow", "frostshardsnow",
             "ironoresandstone", "copperoresandstone", "goldoresandstone", "quartzsandstone",
             "ironoreswamp", "copperoreswamp", "goldoreswamp", "ivyoreswamp", "myceliumoredeepswamp",
+            "ironoregraniterock", "copperoregraniterock", "goldoregraniterock",
+            "ironorebasaltrock","copperorebasaltrock","goldorebasaltrock","tungstenorebasaltrock","lifequartzbasaltrock","amberbasaltrock",
             "ironoredeeprock", "copperoredeeprock","goldoredeeprock", "tungstenoredeeprock", "lifequartzdeeprock",
             "ironoredeepsnowrock", "copperoredeepsnowrock", "goldoredeepsnowrock", "tungstenoredeepsnowrock", "lifequartzdeepsnowrock", "glacialoredeepsnowrock",
             "ironoredeepsandstonerock", "copperoredeepsandstonerock", "goldoredeepsandstonerock", "ancientfossiloredeepsnowrock", "lifequartzdeepsandstonerock",
-            "ironoredeepswamprock", "copperoredeepswamprock", "goldoredeepswamprock", "tungstenoredeepswamprock", "myceliumoredeepswamprock", "ancientfossiloredeepswamprock",
+            "ironoredeepswamprock", "copperoredeepswamprock", "goldoredeepswamprock", "tungstenoredeepswamprock", "myceliumoredeepswamprock", "ancientfossiloredeepswamprock", "lifequartzdeepswamprock",
             "clayrock", "obsidianrock", "coalorerock", "coaloredeeprock", "coaloresnow", "coaloreswamp", "coaloresandstone", "coaloredeepsnowrock", "coaloredeepsandstone",
-            "alchemysharddeepsandstonerock", "alchemysharddeepsnowrock", "alchemysharddeepswamprock",
-            "upgradesharddeepsandstonerock", "upgradesharddeepsnowrock", "upgradesharddeepswamprock"
+            "alchemysharddeeprock", "alchemysharddeepsandstonerock", "alchemysharddeepsnowrock", "alchemysharddeepswamprock", "alchemyshardspiderrock", "alchemyshardslimerock", "alchemyshardcrystal",
+            "upgradesharddeeprock", "upgradesharddeepsandstonerock", "upgradesharddeepsnowrock", "upgradesharddeepswamprock", "upgradeshardspiderrock", "upgradeshardslimerock", "upgradeshardcrystal",
+            "slimeumslimerock", "spideritespiderrock"
     ));
     public static final String RADIUS_KEY = "radius";
     public static final String ORES_KEY = "ores";
